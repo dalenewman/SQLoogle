@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Version = WebSite.Config.StaticContentVersion;
+    ViewBag.Api = HttpUtility.JavaScriptStringEncode(Url.Content(WebSite.Config.SqloogleApi));
+    ViewBag.Logo = Url.Content("~/Content/images/SQLoogleLogo.png");
+    ViewBag.Loader = Url.Content("~/Content/images/loader.gif");
+    ViewBag.Root = HttpUtility.JavaScriptStringEncode(Url.Content("~/"));
+}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+    @if (HttpContext.Current.IsDebuggingEnabled) {
+        
+        <link href="@Url.Content("~/Content/colorbox.css")?v=@ViewBag.Version" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/prettify.css")?v=@ViewBag.Version" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Scripts/mergely-3.3.3/lib/codemirror.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Scripts/mergely-3.3.3/lib/mergely.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/site.css")?v=@ViewBag.Version" rel="stylesheet" type="text/css" />
+ 
+        <script src="@Url.Content("~/Scripts/jquery-2.0.3.js")" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/knockout-2.3.0.debug.js")" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/colorbox/jquery.colorbox.js")?v=@ViewBag.Version" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/google-code-prettify/stack-prettify.js")?=@ViewBag.Version" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/mergely-3.3.3/lib/codemirror.js")" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/codemirror-sql.js")" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/mergely-3.3.3/lib/mergely.js")" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/sqloogle.js")?v=@ViewBag.Version" type="text/javascript"></script>
+    }
+    else
+    {
+        <link href="@Url.Content("~/Content/combined.min.css")?v=@ViewBag.Version" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/combined.min.js")?v=@ViewBag.Version" type="text/javascript"> </script>
+    }
+        <script type="text/javascript">
+        //<!--
+            window.settings = {
+                user: '@User.Identity.Name',
+                api: '@ViewBag.Api',
+                logo: '@ViewBag.Logo',
+                version: '@ViewBag.Version',
+                root: '@ViewBag.Root',
+                scripts: '@Url.Content("~/Scripts/")',
+                content: '@Url.Content("~/Content/")'
+            };
+        //-->
+        </script>
+    </head>
+
+    <body>
+        <div style="display:list-item;">
+            <div style="float:right; white-space: nowrap;">
+                <!-- ko if: comparing -->
+                    <a style="display: none;" href="javascript:;" title="back to SQLoogle" data-bind="click: stopComparing, visible: comparing">Back</a><span style="display: none" data-bind="visible: comparing"> | </span>
+                <!-- /ko -->
+                <!-- ko ifnot: comparing -->
+                    <!-- ko if: isComparable() -->
+                        <a style="display: none;" href="javascript:;" title="compare the selected search results" data-bind="click: compare, visible: !comparing()">Compare</a><span style="display: none" data-bind="visible: !comparing()"> | </span> 
+                    <!-- /ko -->
+                <!-- /ko -->
+                <a href="javascript:;" data-bind="click: toggleMode, text: sqlMode() ? 'MIA' : 'SQL'">MIA</a> | 
+                <a data-bind="attr: { href: directLink, title: 'direct link' }" title="direct link for this query">Link</a> | 
+                <a target="_blank" href="http://lucene.apache.org/core/old_versioned_docs/versions/3_0_3/queryparsersyntax.html">Query Syntax</a> | 
+                <a href="@(ViewBag.Api)Logs/">Logs</a>
+            </div>
+        </div>
+        <div style="display:none;" id="compare" data-bind="visible: comparing"></div>
+        <div style="text-align: center;" data-bind="visible: !comparing()" >
+            <div class="logo">
+                <img class="loader" alt="loader" src="@ViewBag.Loader" data-bind="attr: { style: loading() ? 'visibility:visible;' : 'visibility:hidden;'}"/>
+            </div>            
+            <br/>
+            @RenderBody()
+        </div>
+        <div style="display: none;">
+            <div style="padding: 8px;" id="message"></div>
+        </div>
+        <div id="sqlView" style="display: none;">
+            <pre id="sqlText" class="lang-sql prettyprint linenums"></pre>
+        </div>
+        
+    </body>
+
+</html>

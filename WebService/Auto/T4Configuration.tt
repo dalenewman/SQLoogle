@@ -1,0 +1,116 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#
+// <copyright file="T4Configuration.tt" author="Chris Pacey">
+//  Copyright ©2011 . All Rights Reserved.
+// </copyright>
+
+
+#>
+using System;
+using System.Configuration;
+
+namespace <#= this.GetNamespace + ".Auto" #>
+{
+	public static class Config
+	{
+<#	
+
+foreach(var attribute in this.AppKeys)
+{
+#>	
+		public static String <#= this.CleanStringForClass(attribute) #>
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["<#= attribute #>"];
+			}
+		}
+<#
+}
+foreach(var attribute in this.ConnKeys)
+{
+#>
+		public static String <#= this.CleanStringForClass(attribute) #>
+		{
+			get
+			{
+				return ConfigurationManager.ConnectionStrings["<#= attribute #>"].ConnectionString;
+			}
+		}
+<#
+}
+#>
+	}
+}
+
+<#+ 
+	public String GetNamespace
+	{
+		get 
+		{
+			var hostServiceProvider = (IServiceProvider) Host;
+			EnvDTE.DTE dte = (EnvDTE.DTE) hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+			EnvDTE.ProjectItem templateProjectItem = dte.Solution.FindProjectItem(Host.TemplateFile);
+			return templateProjectItem.ContainingProject.Properties.Item("DefaultNamespace").Value.ToString();
+		}
+	}
+	
+	private IEnumerable<string> AppKeys
+	{
+		get
+		{
+			var appKeys = (from settings in this.XmlDoc.Descendants("appSettings")
+								from add in settings.Elements("add")
+								from atts in add.Attributes("key")
+								select atts.Value);
+			return appKeys;
+		}
+	}
+	
+	private IEnumerable<String> ConnKeys
+	{
+		get
+		{
+			var connKeys = (from settings in this.XmlDoc.Descendants("connectionStrings")
+								from add in settings.Elements("add")
+								from atts in add.Attributes("name")
+								select atts.Value);
+			return connKeys;
+		}
+	}
+	
+	private XDocument XmlDoc
+	{
+		get
+		{
+			String configFilePath = String.Empty;
+			try {
+				if (File.Exists(Host.ResolvePath(@"..\app.config")))
+				configFilePath = Host.ResolvePath(@"..\app.config");
+			}
+			catch(FileNotFoundException)
+			{
+				if (File.Exists(Host.ResolvePath(@"..\web.config")))
+				configFilePath = Host.ResolvePath(@"..\web.config");
+			}
+			return XDocument.Load(configFilePath);
+		}
+	}
+
+	private String CleanStringForClass (String name)
+	{
+		return name.Replace(":", "").Replace("-", "");
+	}
+#>

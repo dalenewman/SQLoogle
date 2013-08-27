@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{344419B4-518D-47DD-945A-D47BBFC03AAD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sqloogle</RootNamespace>
+    <AssemblyName>Sqloogle</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release x86|AnyCPU'">
+    <OutputPath>bin\Release x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release x86|x86'">
+    <OutputPath>bin\x86\Release x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=2.0.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IIndexWriter.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Attributes\ShowCollection.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Errors\MessageLog.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Events\ProgressEventArgs.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Events\ProgressEventHandler.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Misc\SchemaException.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Model\IDatabase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Model\ISchemaBase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Model\ISchemaList.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Model\SchemaBase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Model\SchemaList.cs" />
+    <Compile Include="Libs\DBDiff.Schema\Model\SearchSchemaBase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlAction.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SQLScript.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SQLScriptList.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareAssemblies.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareBase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareCLRFunction.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareCLRStoreProcedure.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareCLRTriggers.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareColumns.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareColumnsConstraints.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareConstraints.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareDatabase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareDDLTriggers.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareFileGroups.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareFullText.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareFullTextIndex.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareFunctions.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareIndexes.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\ComparePartitionFunction.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\ComparePartitionSchemes.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareRoles.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareRules.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareSchemas.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareStoreProcedures.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareSynonyms.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareTables.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareTablesOptions.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareTableType.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareTriggers.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareUserDataTypes.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareUsers.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareViews.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Compare\CompareXMLSchemas.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\Generate.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateAssemblies.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateConstraint.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateDatabase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateDDLTriggers.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateDefaults.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateExtendedProperties.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateFileGroups.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateFullText.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateFullTextIndex.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateFunctions.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateIndex.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GeneratePartitionFunctions.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GeneratePartitionScheme.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateRules.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateSchemas.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateStoreProcedures.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateSynonyms.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateTables.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateTextObjects.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateTriggers.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateUserDataTypes.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateUsers.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateViews.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\GenerateXMLSchemas.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\ConstraintSQLCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\DatabaseSQLCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\FullTextIndexSQLCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\FunctionSQLCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\IndexSQLCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\TableSQLCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\UserDataTypeCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\UserSQLCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\SQLCommands\ViewSQLCommand.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\Util\Constants.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\Util\ConvertType.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\Util\SqlStrings.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Generates\Util\Strings.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Assembly.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\AssemblyFile.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\CLRCode.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\CLRFunction.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\CLRStoreProcedure.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\CLRTrigger.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Code.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Column.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\ColumnConstraint.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Columns.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Constraint.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\ConstraintColumn.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\ConstraintColumns.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Database.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\DatabaseInfo.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Default.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Dependence.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Dependencies.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\ExtendedProperty.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\FileGroup.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\FileGroupFile.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\FileGroupFiles.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\FullText.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\FullTextIndex.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\FullTextIndexColumn.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Function.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Index.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\IndexColumn.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\IndexColumns.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Interfaces\ICode.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Interfaces\ISQLServerSchemaBase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\ITableType.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\ObjectDependency.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Parameter.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\PartitionFunction.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\PartitionScheme.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Role.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Rule.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Schema.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\SQLServerSchemaBase.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\StoreProcedure.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Synonym.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Table.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\TableOption.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\TablePartition.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\TableType.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Trigger.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\User.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\UserDataType.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\Util\FormatCode.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\View.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Model\XMLSchema.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOption.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOptionComparison.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOptionDefault.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOptionFilter.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOptionFilterItem.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOptionIgnore.cs" />
+    <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOptionScript.cs" />
+    <Compile Include="Libs\DBDiff.Schema\StatusEnum.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\ConventionOperations\ConventionInputCommandOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\ConventionOperations\ConventionOutputCommandOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\ConventionOperations\ConventionSqlBatchOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\ConventionOperations\ConventionSqlBulkInsertOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\DataReaders\Descriptor.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\DataReaders\DictionaryDescriptorAdapter.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\DataReaders\DictionaryEnumeratorDataReader.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\DataReaders\EnumerableDataReader.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\CachingEnumerable.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\EventRaisingEnumerator.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\GatedThreadSafeEnumerator.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\SingleRowEventRaisingEnumerator.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\ThreadSafeEnumerator.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\EtlProcess.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\EtlProcessBase.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Exceptions\MissingKeyException.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Exceptions\ParameterCountException.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Exceptions\RhinoEtlException.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Guard.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Infrastructure\SqlCommandSet.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Infrastructure\Use.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\IPipelineExecuter.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\ObjectArrayKeys.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractAggregationOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractBranchingOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractCommandOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractDatabaseOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\BranchingOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\InputCommandOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\IOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\JoinOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\JoinType.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\MultiThreadedBranchingOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\NestedLoopsJoinOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\OperationStatistics.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\OutputCommandOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\PartialProcessOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\SqlBatchOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Operations\SqlBulkInsertOperation.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\AbstractPipelineExecuter.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\PipelineExecutionException.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\SingleThreadedNonCachedPipelineExecuter.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\SingleThreadedPipelineExecuter.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\ThreadPoolPipelineExecuter.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\QuackingDictionary.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\Row.cs" />
+    <Compile Include="Libs\Rhino.Etl\Core\WithLoggingMixin.cs" />
+    <Compile Include="LuceneFieldSettings.cs" />
+    <Compile Include="LuceneWriter.cs" />
+    <Compile Include="Operations\CachedObjectStatsJoin.cs" />
+    <Compile Include="Operations\CachedSqlAggregate.cs" />
+    <Compile Include="Operations\CachedSqlExtract.cs" />
+    <Compile Include="Operations\CachedSqlPostTransform.cs" />
+    <Compile Include="Operations\IndexStatsJoin.cs" />
+    <Compile Include="Operations\LuceneExtract.cs" />
+    <Compile Include="Operations\DatabaseFilter.cs" />
+    <Compile Include="Operations\FakeOperation.cs" />
+    <Compile Include="Operations\LuceneLoad.cs" />
+    <Compile Include="Operations\MissingIndexExtract.cs" />
+    <Compile Include="Operations\DefinitionExtract.cs" />
+    <Compile Include="Operations\IndexStatsExtract.cs" />
+    <Compile Include="Operations\CachedObjectStatsExtract.cs" />
+    <Compile Include="Operations\MissingIndexTransform.cs" />
+    <Compile Include="Operations\ReportingServicesExtract.cs" />
+    <Compile Include="Operations\ReportingServicesTransform.cs" />
+    <Compile Include="Operations\SqloogleAggregate.cs" />
+    <Compile Include="Operations\SqloogleCompare.cs" />
+    <Compile Include="Operations\SqloogleTransform.cs" />
+    <Compile Include="Operations\Support\AppendToRowOperation.cs" />
+    <Compile Include="Operations\Support\ParallelUnionAllOperation.cs" />
+    <Compile Include="Operations\Support\KeyCheckOperation.cs" />
+    <Compile Include="Operations\Support\SerialUnionAllOperation.cs" />
+    <Compile Include="Operations\TableStatsExtract.cs" />
+    <Compile Include="Operations\SqlAgentJobExtract.cs" />
+    <Compile Include="Operations\Support\SqlSubOperation.cs" />
+    <Compile Include="Operations\Support\SqlOperation.cs" />
+    <Compile Include="Operations\Support\InputOperation.cs" />
+    <Compile Include="Operations\Support\LogOperation.cs" />
+    <Compile Include="Operations\Support\UnionOperation.cs" />
+    <Compile Include="Operations\DatabaseExtract.cs" />
+    <Compile Include="Operations\CachedSqlPreTransform.cs" />
+    <Compile Include="Operations\AbstractLuceneLoad.cs" />
+    <Compile Include="Operations\TableStatsJoin.cs" />
+    <Compile Include="Processes\CachedSqlProcess.cs" />
+    <Compile Include="Processes\SqloogleEtlProcess.cs" />
+    <Compile Include="Processes\SqloogleMiaProcess.cs" />
+    <Compile Include="Processes\DefinitionProcess.cs" />
+    <Compile Include="Processes\ServerMiaCrawlProcess.cs" />
+    <Compile Include="Processes\ServerCrawlProcess.cs" />
+    <Compile Include="Processes\ReportingServicesProcess.cs" />
+    <Compile Include="Processes\SqloogleProcess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\IScriptSearcher.cs" />
+    <Compile Include="Search\SqloogleMiaSearcher.cs" />
+    <Compile Include="Search\SqloogleSearcher.cs" />
+    <Compile Include="SqlConnectionChecker.cs" />
+    <Compile Include="SqloogleBotConfiguration.cs" />
+    <Compile Include="Utilities\Dates.cs" />
+    <Compile Include="Utilities\Docs.cs" />
+    <Compile Include="Utilities\LinqExtensions.cs" />
+    <Compile Include="Utilities\SqlStrings.cs" />
+    <Compile Include="Utilities\Strings.cs" />
+    <Compile Include="Utilities\Enums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,166 @@
+﻿<# /*
+	
+	T4 Configuration
+
+	Author: Chris Pacey (@ccpacey)
+
+	T4Configuration is a T4 (text template) file that lives in Visual Studio 2010 and automatically
+	creates a static class with properties from your configuration (*.config) file.
+
+	After installation it should run automatically, if you need to regenerate the class just right click and select "run custom tool".
+
+	To use in your application you should just have to type:
+
+	'Config.appSetting'
+
+	'Config.connectionString'
+
+	It will also be in your root namespace.
+
+	http://nuget.org/packages/T4Configuration	
+	https://github.com/tornal/T4Configuration
+	
+	This script is issued under the following BSD License.
+	
+	BSD License
+	Copyright (c) 2012, Chris Pacey
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+	Neither the name of the Author nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+	FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+	BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+	LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+*/ #>
+<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension=".generated.cs" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#
+	this.LookForAllRootConfigs();
+#>
+using System;
+using System.Configuration;
+
+namespace <#= this.GetNamespace #>
+{
+	public static class Config
+	{
+<#	
+
+foreach(var attribute in this.AppKeys)
+{
+#>	
+		public static String <#= this.CleanStringForClass(attribute) #>
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["<#= attribute #>"];
+			}
+		}
+<#
+}
+foreach(var attribute in this.ConnKeys)
+{
+#>
+		public static String <#= this.CleanStringForClass(attribute) #>
+		{
+			get
+			{
+				return ConfigurationManager.ConnectionStrings["<#= attribute #>"].ConnectionString;
+			}
+		}
+<#
+}
+#>
+	}
+}
+
+<#+ 
+	private String GetNamespace
+	{
+		get 
+		{
+			var hostServiceProvider = (IServiceProvider) Host;
+			EnvDTE.DTE dte = (EnvDTE.DTE) hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+			EnvDTE.ProjectItem templateProjectItem = dte.Solution.FindProjectItem(Host.TemplateFile);
+			return templateProjectItem.ContainingProject.Properties.Item("DefaultNamespace").Value.ToString();
+		}
+	}
+	
+	private IEnumerable<String> _appKeys;
+	private IEnumerable<String> AppKeys
+	{
+		get
+		{
+			if (this._appKeys == null)
+				this._appKeys = new List<String>();
+			return this._appKeys;
+		}
+		set { this._appKeys = value; }
+	}
+	
+	private IEnumerable<String> _connKeys;
+	private IEnumerable<String> ConnKeys
+	{
+		get
+		{
+			if (this._connKeys == null)
+				this._connKeys = new List<String>();
+			return this._connKeys;
+		}
+		set { this._connKeys = value; }
+	}
+	
+	private String _configFilePath;
+	
+	private String CleanStringForClass (String name)
+	{
+		return name.Replace(":", "").Replace("-", "").Trim();
+	}
+	
+	private void LookForAllRootConfigs()
+	{
+		this._configFilePath = Host.ResolvePath(".").Substring(0, Host.ResolvePath(".").Length - 1);
+		var files = Directory.GetFiles(this._configFilePath, "*.config");
+		if (files.Any())
+		{
+			List<String> appKeyStore = new List<String>();
+			List<String> connKeyStore = new List<String>();
+			foreach (var fileName in files)
+			{
+				if (File.Exists(fileName)) {
+					appKeyStore.AddRange(
+						XDocument.Load(fileName)
+							.Descendants("appSettings")
+							.Elements("add")
+							.Attributes("key")
+							.Select(s => s.Value));
+					connKeyStore.AddRange(
+						XDocument.Load(fileName)
+							.Descendants("connectionStrings")
+							.Elements("add")
+							.Attributes("name")
+							.Select(s => s.Value));
+					
+				}
+			}
+			if (appKeyStore.Any()) this.AppKeys = appKeyStore;
+			if (connKeyStore.Any()) this.ConnKeys = connKeyStore;
+		}
+	}
+#>

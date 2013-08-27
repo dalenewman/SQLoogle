@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Sqloogle";
+}
+
+<input class="q" type="text" data-bind="value: query, event: { keyup: searchOnEnter }, hasfocus: true, visible: !isSubsetOfMia()" />
+<br />
+<div data-bind="visible: isSubsetOfMia">
+    <span data-bind="visible: isSubsetOfMia, text: info" style="font-size: larger;"></span> 
+    <span class="icons close" data-bind="click: toggleMode"></span>
+</div>
+<br />
+<table data-bind="visible: sqlMode() && sqlResults().length > 0">
+    <thead>
+        <tr>
+            <th>&nbsp; </th>
+            <th>server:</th>
+            <th>database:</th>
+            <th>schema:</th>
+            <th>name:</th>
+            <th>type:</th>
+            <th>modified:</th>
+            <th>use:</th>
+            <th>lastused:</th>
+            <th>&nbsp; </th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: sqlResults" >
+        <tr data-bind="attr: { class: selected() ? 'selected' : 'hit' }, event: { mouseover: toggleIconStyle, mouseout: toggleIconStyle }">
+            <td>
+                <input type="checkbox" data-bind="checked: selected, attr: { id: id }, event: { change: $parent.selectedChange }" />
+            </td>
+            <td data-bind="html: serverFormatted()"></td>
+            <td data-bind="html: databaseFormatted()"></td>
+            <td data-bind="text: schema"></td>
+            <td data-bind="html: nameFormatted()"></td>
+            <td data-bind="text: type"></td>
+            <td data-bind="text: modified"></td>
+            <td data-bind="text: useFormatted()"></td>
+            <td data-bind="text: lastUsed"></td>
+            <td style="white-space: nowrap;">
+                <a data-bind="attr: { href: url }" title="download"><span class="icons download" data-bind="attr: { style: selected() ? 'background-image: url(Content/images/icons_selected.png);' : iconStyle }"></span></a> 
+                <a href="javascript:;" title="view" data-bind="click: view"><span class="icons view" data-bind="attr: { style: selected() ? 'background-image: url(Content/images/icons_selected.png);' : iconStyle }"></span></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="display: none;" data-bind="visible: miaMode() && miaResults().length > 0">
+    <thead>
+        <tr>
+            <th>server:</th>
+            <th>database:</th>
+            <th>schema:</th>
+            <th>name:</th>
+            <th>columns</th>
+            <th>score</th>
+            <th>&nbsp; </th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: miaResults">
+        <tr class="hit" data-bind="event: { mouseover: toggleIconStyle, mouseout: toggleIconStyle }" >
+            <td data-bind="text: server"></td>
+            <td data-bind="text: database"></td>
+            <td data-bind="text: schema"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="html: columnSummary"></td>
+            <td data-bind="text: score"></td>
+            <td style="white-space: nowrap;">
+                <a href="javascript:;" title="causes" data-bind="click: $parent.querySqlCauses"><span class="icons query" data-bind="attr: { style: iconStyle }"></span></a> 
+                <a href="javascript:;" title="indexes" data-bind="click: $parent.queryExistingIndexes"><span class="icons query-indexes" data-bind="attr: { style: iconStyle }"></span></a> 
+                <a href="javascript:;" title="create" data-bind="click: viewCreateIndexSql"><span class="icons create" data-bind="attr: { style: iconStyle }"></span></a> 
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<pre class="error" data-bind="text: error"></pre>

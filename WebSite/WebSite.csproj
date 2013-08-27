@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BDC33BAD-8F41-431A-ADD0-B58EF4BAB968}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebSite</RootNamespace>
+    <AssemblyName>WebSite</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.DirectoryServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="T4Configuration.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4Configuration.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\combined.min.css" />
+    <Content Include="Content\images\border1.png" />
+    <Content Include="Content\images\border2.png" />
+    <Content Include="Content\images\icons.jpg" />
+    <Content Include="Content\images\icons.png" />
+    <Content Include="Content\images\icons_hover.png" />
+    <Content Include="Content\images\icons_selected.png" />
+    <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\SmallSQLoogleLogo.png" />
+    <Content Include="Content\images\SQLoogleLogo.png" />
+    <Content Include="Content\prettify.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\colorbox.css" />
+    <Content Include="Scripts\codemirror-sql.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-ar.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-bg.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-cs.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-da.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-de.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-es.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-et.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-fa.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-fi.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-fr.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-hr.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-hu.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-id.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-it.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-ja.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-kr.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-lv.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-nl.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-no.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-pl.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-pt-br.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-ro.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-ru.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-sk.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-sv.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-tr.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-zh-CN.js" />
+    <Content Include="Scripts\colorbox\jquery.colorbox-min.js" />
+    <Content Include="Scripts\colorbox\jquery.colorbox.js" />
+    <Content Include="Scripts\combined.min.js" />
+    <Content Include="Scripts\date.format.js" />
+    <Content Include="Scripts\google-code-prettify\stack-prettify.js" />
+    <Content Include="Scripts\google-code-prettify\lang-apollo.js" />
+    <Content Include="Scripts\google-code-prettify\lang-clj.js" />
+    <Content Include="Scripts\google-code-prettify\lang-css.js" />
+    <Content Include="Scripts\google-code-prettify\lang-go.js" />
+    <Content Include="Scripts\google-code-prettify\lang-hs.js" />
+    <Content Include="Scripts\google-code-prettify\lang-lisp.js" />
+    <Content Include="Scripts\google-code-prettify\lang-lua.js" />
+    <Content Include="Scripts\google-code-prettify\lang-ml.js" />
+    <Content Include="Scripts\google-code-prettify\lang-n.js" />
+    <Content Include="Scripts\google-code-prettify\lang-proto.js" />
+    <Content Include="Scripts\google-code-prettify\lang-scala.js" />
+    <Content Include="Scripts\google-code-prettify\lang-sql.js" />
+    <Content Include="Scripts\google-code-prettify\lang-tex.js" />
+    <Content Include="Scripts\google-code-prettify\lang-vb.js" />
+    <Content Include="Scripts\google-code-prettify\lang-vhdl.js" />
+    <Content Include="Scripts\google-code-prettify\lang-wiki.js" />
+    <Content Include="Scripts\google-code-prettify\lang-xq.js" />
+    <Content Include="Scripts\google-code-prettify\lang-yaml.js" />
+    <Content Include="Scripts\google-code-prettify\prettify.js" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\knockout-2.3.0.debug.js" />
+    <Content Include="Scripts\knockout-2.3.0.js" />
+    <Content Include="Scripts\mergely-3.3.3\doc\index.html" />
+    <Content Include="Scripts\mergely-3.3.3\editor\editor.css" />
+    <Content Include="Scripts\mergely-3.3.3\editor\editor.js" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\arrow-down-v.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\arrow-left-v.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\arrow-right-v.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\arrow-right.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\arrow-up-v.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\banner.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\check.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\download.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\redo.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\share.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\swap.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\undo.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\upload.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\images\x-mark.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\farbtastic\farbtastic.css" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\farbtastic\farbtastic.js" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\farbtastic\index.html" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\farbtastic\LICENSE.txt" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\farbtastic\marker.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\farbtastic\mask.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\farbtastic\wheel.png" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\gatag.js" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\tipsy\jquery.tipsy.js" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\tipsy\tipsy.css" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\wicked-ui.css" />
+    <Content Include="Scripts\mergely-3.3.3\editor\lib\wicked-ui.js" />
+    <Content Include="Scripts\mergely-3.3.3\examples\ajax.html" />
+    <Content Include="Scripts\mergely-3.3.3\examples\lhs.txt" />
+    <Content Include="Scripts\mergely-3.3.3\examples\rhs.txt" />
+    <Content Include="Scripts\mergely-3.3.3\examples\simple.html" />
+    <Content Include="Scripts\mergely-3.3.3\examples\size.html" />
+    <Content Include="Scripts\mergely-3.3.3\lib\codemirror.css" />
+    <Content Include="Scripts\mergely-3.3.3\lib\codemirror.js" />
+    <Content Include="Scripts\mergely-3.3.3\lib\codemirror.min.js" />
+    <Content Include="Scripts\mergely-3.3.3\lib\mergely.css" />
+    <Content Include="Scripts\mergely-3.3.3\lib\mergely.js" />
+    <Content Include="Scripts\mergely-3.3.3\lib\mergely.min.js" />
+    <Content Include="Scripts\mergely-3.3.3\lib\searchcursor.js" />
+    <Content Include="Scripts\mergely-3.3.3\LICENSE.html" />
+    <Content Include="Scripts\sqloogle.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\site.css" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Content\Web.config" />
+    <None Include="readme.txt" />
+    <Content Include="Scripts\Web.config" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\mergely-3.3.3\doc\LICENSE" />
+    <Content Include="Scripts\mergely-3.3.3\editor\editor.php" />
+    <None Include="T4Configuration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4Configuration.generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release x86|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release x86|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55015</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8080/Sqloogle</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)packages\AjaxMin.exe" -clobber "$(ProjectDir)Content\colorbox.css" "$(ProjectDir)Content\prettify.css" "$(ProjectDir)Scripts\mergely-3.3.3\lib\codemirror.css" "$(ProjectDir)Scripts\mergely-3.3.3\lib\mergely.css" "$(ProjectDir)Content\site.css" -o "$(ProjectDir)Content\combined.min.css"
+
+"$(SolutionDir)packages\AjaxMin.exe" -clobber "$(ProjectDir)Scripts\jquery-2.0.3.min.js" "$(ProjectDir)Scripts\knockout-2.3.0.js" "$(ProjectDir)Scripts\colorbox\jquery.colorbox.js" "$(ProjectDir)Scripts\google-code-prettify\stack-prettify.js" "$(ProjectDir)Scripts\mergely-3.3.3\lib\codemirror.js" "$(ProjectDir)Scripts\codemirror-sql.js" "$(ProjectDir)Scripts\mergely-3.3.3\lib\mergely.js" "$(ProjectDir)Scripts\sqloogle.js" -o "$(ProjectDir)Scripts\combined.min.js"</PostBuildEvent>
+  </PropertyGroup>
+</Project>
