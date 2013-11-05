@@ -8,7 +8,7 @@ using Lucene.Net.Index;
 using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
-using NLog;
+using Sqloogle.Libs.NLog;
 using Sqloogle.Utilities;
 using Version = Lucene.Net.Util.Version;
 

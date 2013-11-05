@@ -16,9 +16,12 @@ namespace Sqloogle.Operations {
         private const RegexOptions OPTIONS = RegexOptions.Compiled;
 
         public override IEnumerable<Row> Execute(IEnumerable<Row> rows) {
-            foreach (var row in rows.AsParallel()) {
-                row["id"] = row["sqlscript"].GetHashCode().ToString(CultureInfo.InvariantCulture).Replace("-", "X");
-                row["sql"] = row["sqlscript"] + " " + SqlTransform(row["sqlscript"]);
+
+            foreach (var row in rows) {
+                var sql = SqlTransform(row["sqlscript"]);
+
+                row["sql"] = sql;
+                row["id"] = sql.GetHashCode().ToString(CultureInfo.InvariantCulture).Replace("-", "X");
                 row["created"] = DateTransform(row["created"], DateTime.Today);
                 row["modified"] = DateTransform(row["modified"], DateTime.Today);
                 row["lastused"] = DateTransform(row["lastused"], DateTime.MinValue);
@@ -37,17 +40,17 @@ namespace Sqloogle.Operations {
             if (list == null)
                 return string.Empty;
 
-            var items = (HashSet<string>) list;
+            var items = (HashSet<string>)list;
 
             var strings = (from item in items where !string.IsNullOrEmpty(item) select item).ToArray();
-            var result = strings.Length > 0 ? string.Join(" | ", strings.OrderBy(s=>s)) : string.Empty;
+            var result = strings.Length > 0 ? string.Join(" | ", strings.OrderBy(s => s)) : string.Empty;
             return result.Equals("System.Object[]") ? string.Empty : result;
         }
 
         private static string SqlTransform(object sql) {
             const string space = " ";
-            var clean = Strings.SplitTitleCase(SqlStrings.RemoveSqlPunctuation(sql), space);
-            return string.Join(space, clean.Split(space.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct());
+            var clean = Strings.SplitTitleCase(SqlStrings.RemoveSqlPunctuation(sql), space).ToLower();
+            return sql.ToString().ToLower() + " " + string.Join(space, clean.Split(space.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct());
         }
 
         private static string DateTransform(object possibleDate, DateTime defaultDate) {

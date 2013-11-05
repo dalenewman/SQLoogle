@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
-using NLog;
+using Sqloogle.Libs.NLog;
 
 namespace WebService
 {

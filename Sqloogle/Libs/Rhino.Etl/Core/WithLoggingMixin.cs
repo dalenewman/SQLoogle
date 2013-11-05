@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NLog;
+using Sqloogle.Libs.NLog;
 using Sqloogle.Libs.Rhino.Etl.Core.Exceptions;
 
 namespace Sqloogle.Libs.Rhino.Etl.Core

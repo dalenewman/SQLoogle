@@ -1,6 +1,6 @@
 ﻿using System;
-using NLog;
 using Sqloogle.Libs.DBDiff.Schema.Model;
+using Sqloogle.Libs.NLog;
 
 namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
 {

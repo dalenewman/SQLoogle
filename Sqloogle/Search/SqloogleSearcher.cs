@@ -7,7 +7,7 @@ using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
-using NLog;
+using Sqloogle.Libs.NLog;
 using Sqloogle.Utilities;
 
 namespace Sqloogle.Search
@@ -65,8 +65,10 @@ namespace Sqloogle.Search
 
         public IEnumerable<IDictionary<string, string>> Search(string q)
         {
+            q = q.ToLower();
+
             // by default, results will not include dropped objects, but you can add dropped:? to over-ride this
-            if (!q.ToLower().Contains("dropped:"))
+            if (!q.Contains("dropped:"))
                 q = string.Format("({0}) -dropped:true", q);
 
             var query = _parser.Parse(q);

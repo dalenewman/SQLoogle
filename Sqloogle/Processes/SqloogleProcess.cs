@@ -37,7 +37,7 @@ namespace Sqloogle.Processes {
             Register(new SqloogleAggregate());
             Register(new SqloogleTransform());
             Register(new SqloogleCompare().Right(new LuceneExtract(config.SearchIndexPath)));
-            RegisterLast(new LuceneLoad(config.SearchIndexPath));
+            Register(new LuceneLoad(config.SearchIndexPath));
         }
     }
 }

@@ -8,9 +8,11 @@ namespace SqloogleBot {
             sqloogle.Execute();
             sqloogle.ReportErrors();
 
+
             var sqloogleMia = new SqloogleMiaProcess();
             sqloogleMia.Execute();
             sqloogleMia.ReportErrors();
+
         }
     }
 }

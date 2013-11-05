@@ -27,7 +27,7 @@ namespace Tests.Integration {
             };
 
             var results = generate.Process();
-            Assert.AreEqual(7, results.Procedures.Count);
+            Assert.AreEqual(14, results.Procedures.Count);
             Assert.AreEqual(0, results.Users.Count);
         }
 

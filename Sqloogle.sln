@@ -1,6 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BEF445F-FB98-4406-944C-F6FCCF6E28E5}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4830BA0F-4BC9-4C3D-90D2-198933D0E7D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqloogle", "Sqloogle\Sqloogle.csproj", "{344419B4-518D-47DD-945A-D47BBFC03AAD}"
@@ -12,12 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqloogleBot", "SqloogleBot\SqloogleBot.csproj", "{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Integration", "Tests.Integration\Tests.Integration.csproj", "{6583FF84-21F5-4F65-8EAB-8B7DCD580E92}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BEF445F-FB98-4406-944C-F6FCCF6E28E5}"
-	ProjectSection(SolutionItems) = preProject
-		LICENSE.txt = LICENSE.txt
-		README.md = README.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,7 @@ Global
 		{BDC33BAD-8F41-431A-ADD0-B58EF4BAB968}.Release|x64.ActiveCfg = Release|Any CPU
 		{BDC33BAD-8F41-431A-ADD0-B58EF4BAB968}.Release|x86.ActiveCfg = Release|Any CPU
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Debug|Any CPU.Build.0 = Debug|x86
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Debug|Mixed Platforms.Build.0 = Debug|x64
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Debug|x64.ActiveCfg = Debug|x64
@@ -87,6 +90,7 @@ Global
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Debug|x86.ActiveCfg = Debug|x86
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Debug|x86.Build.0 = Debug|x86
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Release|Any CPU.ActiveCfg = Release|x86
+		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Release|Any CPU.Build.0 = Release|x86
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Release|Mixed Platforms.ActiveCfg = Release|x64
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Release|Mixed Platforms.Build.0 = Release|x64
 		{5B6308AC-2E88-4FA8-8FEF-F8501FFF2FF8}.Release|x64.ActiveCfg = Release|x86

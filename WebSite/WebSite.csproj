@@ -25,6 +25,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -126,6 +127,7 @@
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-fa.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-fi.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-fr.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-he.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-hr.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-hu.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-id.js" />
@@ -139,6 +141,7 @@
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-pt-br.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-ro.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-ru.js" />
+    <Content Include="Scripts\colorbox\i18n\jquery.colorbox-si.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-sk.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-sv.js" />
     <Content Include="Scripts\colorbox\i18n\jquery.colorbox-tr.js" />
@@ -171,8 +174,8 @@
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
-    <Content Include="Scripts\knockout-2.3.0.debug.js" />
-    <Content Include="Scripts\knockout-2.3.0.js" />
+    <Content Include="Scripts\knockout-3.0.0.debug.js" />
+    <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\mergely-3.3.3\doc\index.html" />
     <Content Include="Scripts\mergely-3.3.3\editor\editor.css" />
     <Content Include="Scripts\mergely-3.3.3\editor\editor.js" />
@@ -323,6 +326,6 @@
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)packages\AjaxMin.exe" -clobber "$(ProjectDir)Content\colorbox.css" "$(ProjectDir)Content\prettify.css" "$(ProjectDir)Scripts\mergely-3.3.3\lib\codemirror.css" "$(ProjectDir)Scripts\mergely-3.3.3\lib\mergely.css" "$(ProjectDir)Content\site.css" -o "$(ProjectDir)Content\combined.min.css"
 
-"$(SolutionDir)packages\AjaxMin.exe" -clobber "$(ProjectDir)Scripts\jquery-2.0.3.min.js" "$(ProjectDir)Scripts\knockout-2.3.0.js" "$(ProjectDir)Scripts\colorbox\jquery.colorbox.js" "$(ProjectDir)Scripts\google-code-prettify\stack-prettify.js" "$(ProjectDir)Scripts\mergely-3.3.3\lib\codemirror.js" "$(ProjectDir)Scripts\codemirror-sql.js" "$(ProjectDir)Scripts\mergely-3.3.3\lib\mergely.js" "$(ProjectDir)Scripts\sqloogle.js" -o "$(ProjectDir)Scripts\combined.min.js"</PostBuildEvent>
+"$(SolutionDir)packages\AjaxMin.exe" -clobber "$(ProjectDir)Scripts\jquery-2.0.3.min.js" "$(ProjectDir)Scripts\knockout-3.0.0.js" "$(ProjectDir)Scripts\colorbox\jquery.colorbox.js" "$(ProjectDir)Scripts\google-code-prettify\stack-prettify.js" "$(ProjectDir)Scripts\mergely-3.3.3\lib\codemirror.js" "$(ProjectDir)Scripts\codemirror-sql.js" "$(ProjectDir)Scripts\mergely-3.3.3\lib\mergely.js" "$(ProjectDir)Scripts\sqloogle.js" -o "$(ProjectDir)Scripts\combined.min.js"</PostBuildEvent>
   </PropertyGroup>
 </Project>

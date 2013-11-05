@@ -1,0 +1,7 @@
+Dale - Action - Today - files north, central, central - split by release (mailing for 7 and 14)
+Dale - Clean From Host - Reject Files, w/reasons - how many successful, pre-scan,
+Dale - Miner / Tfl to NVE Test
+Dale - NVE Web UI NVE Test (for Business Groups)
+Dale - ssdemo.mwf.local Destroy Orders. Delete all orders.
+
+General Strategy - WebUi full explanation of what we got, when, rejects, etc.

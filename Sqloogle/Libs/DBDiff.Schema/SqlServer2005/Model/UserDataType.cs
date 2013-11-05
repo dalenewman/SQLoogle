@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using NLog;
 using Sqloogle.Libs.DBDiff.Schema.Model;
 using Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model.Interfaces;
+using Sqloogle.Libs.NLog;
 
 namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
 {
