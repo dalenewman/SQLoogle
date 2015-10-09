@@ -1,0 +1,91 @@
+﻿input.q {
+    width: 500px;
+    height: 33px;
+    font-size: large;
+    margin-bottom: 13px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+ 
+th 
+{
+    text-align: left;
+    padding: 0;
+    padding-right: 1em;
+    white-space: nowrap;
+}
+
+td {
+    text-align: left;
+    padding-right: 5px;
+}
+
+tr.hit td {
+    border-bottom: thin solid lightgray;
+    vertical-align: top;
+}
+
+tr.hit span {
+    color: darkgray;
+}
+
+tr.hit:hover {
+    background-color: lavender;
+}
+
+tr.selected {
+    background-color: rgb(205, 205, 218);
+    border-bottom: thin solid lightgray;
+    vertical-align: top;
+}
+
+span.dim {
+    border-bottom: thin solid Gray;
+}
+
+pre {
+    font-size: 12pt;
+    padding: 0px 7px 0px 7px;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    margin-bottom: 10px;
+    /* background-color: #EEE; */
+    overflow: auto;
+    width: auto;
+    width: 100% !ie7;
+    padding-bottom: 20px !ie7;
+    height: 94%;
+    white-space: normal;
+}
+
+span.icons  {
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icons.png);
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.download  { background-position: -67px -239px; }
+.view  { background-position: -98px -209px; }
+.close  { background-position: -66px -0px; }
+.query  { background-position: -98px -209px; }
+.query-indexes { background-position: -132px -209px; }
+.create { background-position: -32px -238px; }
+.error { color: red;font-weight: bold; }
+
+img { border: none; }
+
+div.logo {
+    background-image: url(images/SQLoogleLogo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+img.loader {
+    padding: 25px;
+}

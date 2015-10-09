@@ -81,7 +81,7 @@
     </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -92,7 +92,6 @@
     <Compile Include="TestSqloogleCompare.cs" />
     <Compile Include="EtlProcessHelper.cs" />
     <Compile Include="TestEtl.cs" />
-    <Compile Include="TestWebsiteControllers.cs" />
     <Compile Include="TestUtility.cs" />
     <Compile Include="TestSqlTableFinder.cs" />
     <Compile Include="TestSqlParameterReplacer.cs" />
@@ -103,10 +102,6 @@
     <ProjectReference Include="..\Sqloogle\Sqloogle.csproj">
       <Project>{344419B4-518D-47DD-945A-D47BBFC03AAD}</Project>
       <Name>Sqloogle</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebSite\WebSite.csproj">
-      <Project>{BDC33BAD-8F41-431A-ADD0-B58EF4BAB968}</Project>
-      <Name>WebSite</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
