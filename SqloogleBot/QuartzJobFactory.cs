@@ -8,7 +8,7 @@ namespace SqloogleBot {
     public class QuartzJobFactory : IJobFactory {
 
         public IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler) {
-            return null;
+            return new SqloogleJob();
         }
 
         public void ReturnJob(IJob job) {

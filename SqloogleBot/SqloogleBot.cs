@@ -37,12 +37,12 @@ namespace SqloogleBot {
                         new QuartzJobFactory(), 
                         new QuartzLogAdaptor(Utility.GetConsoleLogLevel(), true, true, false, "o")
                     );
-                    Console.WriteLine("Starting SqloogleBot Schedule... :-)");
+                    Console.WriteLine("Starting SqloogleBot... :-)");
                     Console.WriteLine("Press CTRL-C to stop.");
                     scheduler.Start();
 
                     QuitEvent.WaitOne();
-                    Console.WriteLine("Stopping SqloogleBot Scheddule... :-(");
+                    Console.WriteLine("Stopping SqloogleBot... :-(");
                     scheduler.Stop();
                 }
             } else {

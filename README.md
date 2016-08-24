@@ -1,7 +1,11 @@
 SQLoogle
 ========
 
-Note: This README.MD is an article I posted 
+**Update**:  *SQLoogleBot.exe* has a new command line argument; `-s` for schedule. 
+You may pass in a [cron expression](http://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/crontrigger.html) (e.g. `-s "0/20 * 4-23 ? * MON-SAT *"`).  This 
+feature is using the excellent [Quartz.Net](http://www.quartz-scheduler.net/) and [CommandLine Parser](https://commandline.codeplex.com/) libraries. 
+
+Note: What follows is an article I posted 
 to [CodeProject](http://www.codeproject.com/) back 
 in May of 2013.
 
