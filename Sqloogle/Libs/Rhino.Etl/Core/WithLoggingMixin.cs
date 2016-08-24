@@ -1,24 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Sqloogle.Libs.NLog;
+using NLog;
 using Sqloogle.Libs.Rhino.Etl.Core.Exceptions;
 
-namespace Sqloogle.Libs.Rhino.Etl.Core
-{
+namespace Sqloogle.Libs.Rhino.Etl.Core {
     /// <summary>
     /// A base class that expose easily logging events
     /// </summary>
-    public class WithLoggingMixin
-    {
+    public class WithLoggingMixin {
         private readonly Logger _log;
         readonly List<Exception> errors = new List<Exception>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WithLoggingMixin"/> class.
         /// </summary>
-        protected WithLoggingMixin()
-        {
+        protected WithLoggingMixin() {
             _log = LogManager.GetCurrentClassLogger();
         }
 
@@ -28,17 +25,15 @@ namespace Sqloogle.Libs.Rhino.Etl.Core
         /// <param name="exception">The exception.</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        protected void Error(Exception exception, string format, params object[] args)
-        {
+        protected void Error(Exception exception, string format, params object[] args) {
             string message = string.Format(CultureInfo.InvariantCulture, format, args);
             string errorMessage;
-            if(exception!=null)
+            if (exception != null)
                 errorMessage = string.Format("{0}: {1}", message, exception.Message);
             else
                 errorMessage = message.ToString();
             errors.Add(new RhinoEtlException(errorMessage, exception));
-            if (_log.IsErrorEnabled)
-            {
+            if (_log.IsErrorEnabled) {
                 _log.Error(message, exception);
             }
         }
@@ -48,10 +43,8 @@ namespace Sqloogle.Libs.Rhino.Etl.Core
         /// </summary>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        protected void Warn(string format, params object[] args)
-        {
-            if (_log.IsWarnEnabled)
-            {
+        protected void Warn(string format, params object[] args) {
+            if (_log.IsWarnEnabled) {
                 _log.Warn(format, args);
             }
         }
@@ -61,24 +54,20 @@ namespace Sqloogle.Libs.Rhino.Etl.Core
         /// </summary>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        protected void Debug(string format, params object[] args)
-        {
-            if (_log.IsDebugEnabled)
-            {
+        protected void Debug(string format, params object[] args) {
+            if (_log.IsDebugEnabled) {
                 _log.Debug(format, args);
             }
         }
 
-        
+
         /// <summary>
         /// Logs a notice message
         /// </summary>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        protected void Trace(string format, params object[] args)
-        {
-            if (_log.IsTraceEnabled)
-            {
+        protected void Trace(string format, params object[] args) {
+            if (_log.IsTraceEnabled) {
                 _log.Trace(format, args);
             }
         }
@@ -89,10 +78,8 @@ namespace Sqloogle.Libs.Rhino.Etl.Core
         /// </summary>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        protected void Info(string format, params object[] args)
-        {
-            if (_log.IsInfoEnabled)
-            {
+        protected void Info(string format, params object[] args) {
+            if (_log.IsInfoEnabled) {
                 _log.Info(format, args);
             }
         }

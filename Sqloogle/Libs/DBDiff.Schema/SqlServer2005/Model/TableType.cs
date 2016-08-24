@@ -1,19 +1,15 @@
 ﻿using System;
+using NLog;
 using Sqloogle.Libs.DBDiff.Schema.Model;
-using Sqloogle.Libs.NLog;
-
-namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
-{
-    public class TableType:SQLServerSchemaBase, ITable<TableType>
-    {
+namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model {
+    public class TableType : SQLServerSchemaBase, ITable<TableType> {
         private readonly Logger _logger = LogManager.GetLogger("DbDiff");
         private Columns<TableType> columns;
         private SchemaList<Constraint, TableType> constraints;
         private SchemaList<Index, TableType> indexes;
 
         public TableType(Database parent)
-            : base(parent, Enums.ObjectType.TableType)
-        {
+            : base(parent, Enums.ObjectType.TableType) {
             columns = new Columns<TableType>(this);
             constraints = new SchemaList<Constraint, TableType>(this, parent.AllObjects);
             indexes = new SchemaList<Index, TableType>(this, parent.AllObjects);
@@ -34,11 +30,9 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
             get { return indexes; }
         }
 
-        public override string ToSql()
-        {
+        public override string ToSql() {
             string sql = "";
-            if (columns.Count > 0)
-            {
+            if (columns.Count > 0) {
                 sql += "CREATE TYPE " + FullName + " AS TABLE\r\n(\r\n";
                 sql += columns.ToSql() + "\r\n";
                 sql += constraints.ToSql();
@@ -48,61 +42,46 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
             return sql;
         }
 
-        public override string ToSqlDrop()
-        {
+        public override string ToSqlDrop() {
             return "DROP TYPE " + FullName + "\r\nGO\r\n";
         }
 
-        public override string ToSqlAdd()
-        {
+        public override string ToSqlAdd() {
             return ToSql();
         }
 
-        public override SQLScript Create()
-        {
+        public override SQLScript Create() {
             Enums.ScripActionType action = Enums.ScripActionType.AddTableType;
-            if (!GetWasInsertInDiffList(action))
-            {
+            if (!GetWasInsertInDiffList(action)) {
                 SetWasInsertInDiffList(action);
                 return new SQLScript(this.ToSqlAdd(), 0, action);
-            }
-            else
+            } else
                 return null;
         }
 
-        public override SQLScript Drop()
-        {
+        public override SQLScript Drop() {
             Enums.ScripActionType action = Enums.ScripActionType.DropTableType;
-            if (!GetWasInsertInDiffList(action))
-            {
+            if (!GetWasInsertInDiffList(action)) {
                 SetWasInsertInDiffList(action);
                 return new SQLScript(this.ToSqlDrop(), 0, action);
-            }
-            else
+            } else
                 return null;
         }
 
-        public override SQLScriptList ToSqlDiff()
-        {
-            try
-            {
+        public override SQLScriptList ToSqlDiff() {
+            try {
                 SQLScriptList list = new SQLScriptList();
-                if (this.Status == Enums.ObjectStatusType.DropStatus)
-                {
+                if (this.Status == Enums.ObjectStatusType.DropStatus) {
                     list.Add(Drop());
                 }
-                if (this.HasState(Enums.ObjectStatusType.CreateStatus))
-                {
+                if (this.HasState(Enums.ObjectStatusType.CreateStatus)) {
                     list.Add(Create());
                 }
-                if (this.Status == Enums.ObjectStatusType.AlterStatus)
-                {
+                if (this.Status == Enums.ObjectStatusType.AlterStatus) {
                     list.Add(ToSqlDrop() + ToSql(), 0, Enums.ScripActionType.AddTableType);
                 }
                 return list;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 _logger.ErrorException(ex.Message, ex);
                 return null;
             }

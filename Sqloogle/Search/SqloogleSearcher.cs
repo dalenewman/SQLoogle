@@ -7,13 +7,11 @@ using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
-using Sqloogle.Libs.NLog;
+using NLog;
 using Sqloogle.Utilities;
 
-namespace Sqloogle.Search
-{
-    public class SqloogleSearcher : IScriptSearcher
-    {
+namespace Sqloogle.Search {
+    public class SqloogleSearcher : IScriptSearcher {
         private readonly StandardAnalyzer _analyzer;
         private readonly Lucene.Net.Store.Directory _directory;
         private readonly Logger _logger = LogManager.GetLogger("Script Searcher");
@@ -22,8 +20,7 @@ namespace Sqloogle.Search
         private readonly string _indexPath;
         private readonly IndexSearcher _searcher;
 
-        public SqloogleSearcher(string indexPath, int resultsLimit = 50)
-        {
+        public SqloogleSearcher(string indexPath, int resultsLimit = 50) {
             _resultsLimit = resultsLimit;
             _indexPath = indexPath;
 
@@ -63,8 +60,7 @@ namespace Sqloogle.Search
 
         #region IScriptSearcher Members
 
-        public IEnumerable<IDictionary<string, string>> Search(string q)
-        {
+        public IEnumerable<IDictionary<string, string>> Search(string q) {
             q = q.ToLower();
 
             // by default, results will not include dropped objects, but you can add dropped:? to over-ride this
@@ -94,8 +90,7 @@ namespace Sqloogle.Search
             return results;
         }
 
-        public void Close()
-        {
+        public void Close() {
             _analyzer.Close();
             _analyzer.Dispose();
             _searcher.Dispose();
@@ -106,8 +101,7 @@ namespace Sqloogle.Search
 
         #endregion
 
-        public IDictionary<string,string> Find(string id)
-        {
+        public IDictionary<string, string> Find(string id) {
             var keywordAnalyzer = new KeywordAnalyzer();
             var parser = new QueryParser(Version.LUCENE_30, "id", keywordAnalyzer);
             var query = parser.Parse(id);

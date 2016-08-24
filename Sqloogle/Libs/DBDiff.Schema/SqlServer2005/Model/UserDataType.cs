@@ -2,19 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using NLog;
 using Sqloogle.Libs.DBDiff.Schema.Model;
 using Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model.Interfaces;
-using Sqloogle.Libs.NLog;
-
-namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
-{
-    public class UserDataType : SQLServerSchemaBase
-    {
+namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model {
+    public class UserDataType : SQLServerSchemaBase {
         private readonly Logger _logger = LogManager.GetLogger("DbDiff");
 
         public UserDataType(ISchemaBase parent)
-            : base(parent, Enums.ObjectType.UserDataType)
-        {
+            : base(parent, Enums.ObjectType.UserDataType) {
             Default = new Default(this);
             Rule = new Rule(this);
             Dependencys = new List<ObjectDependency>();
@@ -63,32 +59,29 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
         /// <summary>
         /// Clona el objeto Column en una nueva instancia.
         /// </summary>
-        public override ISchemaBase Clone(ISchemaBase parent)
-        {
-            var item = new UserDataType(parent)
-                           {
-                               Name = Name,
-                               Id = Id,
-                               Owner = Owner,
-                               Guid = Guid,
-                               AllowNull = AllowNull,
-                               Precision = Precision,
-                               Scale = Scale,
-                               Size = Size,
-                               Type = Type,
-                               Default = Default.Clone(this),
-                               Rule = Rule.Clone(this),
-                               Dependencys = Dependencys,
-                               IsAssembly = IsAssembly,
-                               AssemblyClass = AssemblyClass,
-                               AssemblyId = AssemblyId,
-                               AssemblyName = AssemblyName
-                           };
+        public override ISchemaBase Clone(ISchemaBase parent) {
+            var item = new UserDataType(parent) {
+                Name = Name,
+                Id = Id,
+                Owner = Owner,
+                Guid = Guid,
+                AllowNull = AllowNull,
+                Precision = Precision,
+                Scale = Scale,
+                Size = Size,
+                Type = Type,
+                Default = Default.Clone(this),
+                Rule = Rule.Clone(this),
+                Dependencys = Dependencys,
+                IsAssembly = IsAssembly,
+                AssemblyClass = AssemblyClass,
+                AssemblyId = AssemblyId,
+                AssemblyName = AssemblyName
+            };
             return item;
         }
 
-        public static Boolean CompareRule(UserDataType origen, UserDataType destino)
-        {
+        public static Boolean CompareRule(UserDataType origen, UserDataType destino) {
             if (destino == null) throw new ArgumentNullException("destino");
             if (origen == null) throw new ArgumentNullException("origen");
             if ((origen.Rule.Name != null) && (destino.Rule.Name == null)) return false;
@@ -98,8 +91,7 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
             return true;
         }
 
-        public static Boolean CompareDefault(UserDataType origen, UserDataType destino)
-        {
+        public static Boolean CompareDefault(UserDataType origen, UserDataType destino) {
             if (destino == null) throw new ArgumentNullException("destino");
             if (origen == null) throw new ArgumentNullException("origen");
             if ((origen.Default.Name != null) && (destino.Default.Name == null)) return false;
@@ -109,11 +101,9 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
             return true;
         }
 
-        public override string ToSql()
-        {
+        public override string ToSql() {
             string sql = "CREATE TYPE " + FullName;
-            if (!IsAssembly)
-            {
+            if (!IsAssembly) {
                 sql += " FROM [" + Type + "]";
                 if (Type.Equals("binary") || Type.Equals("varbinary") || Type.Equals("varchar") || Type.Equals("char") ||
                     Type.Equals("nchar") || Type.Equals("nvarchar"))
@@ -125,27 +115,22 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
                     sql += " NULL";
                 else
                     sql += " NOT NULL";
-            }
-            else
-            {
+            } else {
                 sql += " EXTERNAL NAME [" + AssemblyName + "].[" + AssemblyClass + "]";
             }
             sql += "\r\nGO\r\n";
             return sql + ToSQLAddBinds();
         }
 
-        public override string ToSqlDrop()
-        {
+        public override string ToSqlDrop() {
             return "DROP TYPE " + FullName + "\r\nGO\r\n";
         }
 
-        public override string ToSqlAdd()
-        {
+        public override string ToSqlAdd() {
             return ToSql();
         }
 
-        private string ToSQLAddBinds()
-        {
+        private string ToSQLAddBinds() {
             string sql = "";
             if (!String.IsNullOrEmpty(Default.Name))
                 sql += Default.ToSQLAddBind();
@@ -154,51 +139,41 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
             return sql;
         }
 
-        private SQLScriptList RebuildDependencys(Table table)
-        {
+        private SQLScriptList RebuildDependencys(Table table) {
             var list = new SQLScriptList();
-            List<ISchemaBase> items = ((Database) table.Parent).Dependencies.Find(table.Id);
-            items.ForEach(item =>
-                              {
-                                  ISchemaBase realItem = ((Database) table.Parent).Find(item.FullName);
-                                  if (realItem.IsCodeType)
-                                      list.AddRange(((ICode) realItem).Rebuild());
-                              });
+            List<ISchemaBase> items = ((Database)table.Parent).Dependencies.Find(table.Id);
+            items.ForEach(item => {
+                ISchemaBase realItem = ((Database)table.Parent).Find(item.FullName);
+                if (realItem.IsCodeType)
+                    list.AddRange(((ICode)realItem).Rebuild());
+            });
             return list;
         }
 
-        private SQLScriptList ToSQLChangeColumns()
-        {
+        private SQLScriptList ToSQLChangeColumns() {
             var fields = new Hashtable();
             var list = new SQLScriptList();
             var listDependencys = new SQLScriptList();
-            if ((Status == Enums.ObjectStatusType.AlterStatus) || (Status == Enums.ObjectStatusType.RebuildStatus))
-            {
-                foreach (ObjectDependency dependency in Dependencys)
-                {
-                    ISchemaBase itemDepens = ((Database) Parent).Find(dependency.Name);
+            if ((Status == Enums.ObjectStatusType.AlterStatus) || (Status == Enums.ObjectStatusType.RebuildStatus)) {
+                foreach (ObjectDependency dependency in Dependencys) {
+                    ISchemaBase itemDepens = ((Database)Parent).Find(dependency.Name);
                     /*Si la dependencia es una funcion o una vista, reconstruye el objecto*/
-                    if (dependency.IsCodeType)
-                    {
+                    if (dependency.IsCodeType) {
                         if (itemDepens != null)
-                            list.AddRange(((ICode) itemDepens).Rebuild());
+                            list.AddRange(((ICode)itemDepens).Rebuild());
                     }
                     /*Si la dependencia es una tabla, reconstruye los indices, constraint y columnas asociadas*/
-                    if (dependency.Type == Enums.ObjectType.Table)
-                    {
-                        Column column = ((Table) itemDepens).Columns[dependency.ColumnName];
+                    if (dependency.Type == Enums.ObjectType.Table) {
+                        Column column = ((Table)itemDepens).Columns[dependency.ColumnName];
                         if ((column.Parent.Status != Enums.ObjectStatusType.DropStatus) &&
                             (column.Parent.Status != Enums.ObjectStatusType.CreateStatus) &&
-                            ((column.Status != Enums.ObjectStatusType.CreateStatus) || (column.IsComputed)))
-                        {
-                            if (!fields.ContainsKey(column.FullName))
-                            {
-                                listDependencys.AddRange(RebuildDependencys((Table) itemDepens));
+                            ((column.Status != Enums.ObjectStatusType.CreateStatus) || (column.IsComputed))) {
+                            if (!fields.ContainsKey(column.FullName)) {
+                                listDependencys.AddRange(RebuildDependencys((Table)itemDepens));
                                 if (column.HasToRebuildOnlyConstraint)
                                     //column.Parent.Status = Enums.ObjectStatusType.AlterRebuildDependenciesStatus;
                                     list.AddRange(column.RebuildDependencies());
-                                if (!column.IsComputed)
-                                {
+                                if (!column.IsComputed) {
                                     list.AddRange(column.RebuildConstraint(true));
                                     list.Add(
                                         "ALTER TABLE " + column.Parent.FullName + " ALTER COLUMN " +
@@ -208,25 +183,20 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
                                     if ((column.Status != Enums.ObjectStatusType.DropStatus) &&
                                         (column.Parent.Status != Enums.ObjectStatusType.RebuildStatus))
                                         list.AddRange(column.Alter(Enums.ScripActionType.AlterColumnRestore));
-                                }
-                                else
-                                {
-                                    if (column.Status != Enums.ObjectStatusType.CreateStatus)
-                                    {
-                                        if (!column.GetWasInsertInDiffList(Enums.ScripActionType.AlterColumnFormula))
-                                        {
+                                } else {
+                                    if (column.Status != Enums.ObjectStatusType.CreateStatus) {
+                                        if (!column.GetWasInsertInDiffList(Enums.ScripActionType.AlterColumnFormula)) {
                                             column.SetWasInsertInDiffList(Enums.ScripActionType.AlterColumnFormula);
                                             list.Add(column.ToSqlDrop(), 0, Enums.ScripActionType.AlterColumnFormula);
                                             List<ISchemaBase> drops =
-                                                ((Database) column.Parent.Parent).Dependencies.Find(column.Parent.Id,
+                                                ((Database)column.Parent.Parent).Dependencies.Find(column.Parent.Id,
                                                                                                     column.Id, 0);
-                                            drops.ForEach(item =>
-                                                              {
-                                                                  if (item.Status != Enums.ObjectStatusType.CreateStatus)
-                                                                      list.Add(item.Drop());
-                                                                  if (item.Status != Enums.ObjectStatusType.DropStatus)
-                                                                      list.Add(item.Create());
-                                                              });
+                                            drops.ForEach(item => {
+                                                if (item.Status != Enums.ObjectStatusType.CreateStatus)
+                                                    list.Add(item.Drop());
+                                                if (item.Status != Enums.ObjectStatusType.DropStatus)
+                                                    list.Add(item.Create());
+                                            });
                                             /*Si la columna va a ser eliminada o la tabla va a ser reconstruida, no restaura la columna*/
                                             if ((column.Status != Enums.ObjectStatusType.DropStatus) &&
                                                 (column.Parent.Status != Enums.ObjectStatusType.RebuildStatus))
@@ -245,13 +215,11 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
             return list;
         }
 
-        private Boolean HasAnotherUDTClass()
-        {
-            if (IsAssembly)
-            {
+        private Boolean HasAnotherUDTClass() {
+            if (IsAssembly) {
                 /*Si existe otro UDT con el mismo assembly que se va a crear, debe ser borrado ANTES de crearse el nuevo*/
                 UserDataType other =
-                    ((Database) Parent).UserTypes.Find(
+                    ((Database)Parent).UserTypes.Find(
                         item =>
                         (item.Status == Enums.ObjectStatusType.DropStatus) &&
                         (item.AssemblyName + "." + item.AssemblyClass).Equals((AssemblyName + "." + AssemblyClass)));
@@ -261,55 +229,44 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
             return false;
         }
 
-        private string SQLDropOlder()
-        {
+        private string SQLDropOlder() {
             UserDataType other =
-                ((Database) Parent).UserTypes.Find(
+                ((Database)Parent).UserTypes.Find(
                     item =>
                     (item.Status == Enums.ObjectStatusType.DropStatus) &&
                     (item.AssemblyName + "." + item.AssemblyClass).Equals((AssemblyName + "." + AssemblyClass)));
             return other.ToSqlDrop();
         }
 
-        public override SQLScript Create()
-        {
+        public override SQLScript Create() {
             Enums.ScripActionType action = Enums.ScripActionType.AddUserDataType;
-            if (!GetWasInsertInDiffList(action))
-            {
+            if (!GetWasInsertInDiffList(action)) {
                 SetWasInsertInDiffList(action);
                 return new SQLScript(ToSqlAdd(), 0, action);
-            }
-            else
+            } else
                 return null;
         }
 
-        public override SQLScript Drop()
-        {
+        public override SQLScript Drop() {
             const Enums.ScripActionType action = Enums.ScripActionType.DropUserDataType;
-            if (!GetWasInsertInDiffList(action))
-            {
+            if (!GetWasInsertInDiffList(action)) {
                 SetWasInsertInDiffList(action);
                 return new SQLScript(ToSqlDrop(), 0, action);
             }
             return null;
         }
 
-        public override SQLScriptList ToSqlDiff()
-        {
-            try
-            {
+        public override SQLScriptList ToSqlDiff() {
+            try {
                 var list = new SQLScriptList();
-                if (Status == Enums.ObjectStatusType.DropStatus)
-                {
+                if (Status == Enums.ObjectStatusType.DropStatus) {
                     if (!HasAnotherUDTClass())
                         list.Add(Drop());
                 }
-                if (HasState(Enums.ObjectStatusType.CreateStatus))
-                {
+                if (HasState(Enums.ObjectStatusType.CreateStatus)) {
                     list.Add(Create());
                 }
-                if (Status == Enums.ObjectStatusType.AlterStatus)
-                {
+                if (Status == Enums.ObjectStatusType.AlterStatus) {
                     if (Default.Status == Enums.ObjectStatusType.CreateStatus)
                         list.Add(Default.ToSQLAddBind(), 0, Enums.ScripActionType.AddUserDataType);
                     if (Default.Status == Enums.ObjectStatusType.DropStatus)
@@ -319,31 +276,24 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model
                     if (Rule.Status == Enums.ObjectStatusType.DropStatus)
                         list.Add(Rule.ToSQLAddUnBind(), 0, Enums.ScripActionType.UnbindRuleType);
                 }
-                if (Status == Enums.ObjectStatusType.RebuildStatus)
-                {
+                if (Status == Enums.ObjectStatusType.RebuildStatus) {
                     list.AddRange(ToSQLChangeColumns());
-                    if (!GetWasInsertInDiffList(Enums.ScripActionType.DropUserDataType))
-                    {
+                    if (!GetWasInsertInDiffList(Enums.ScripActionType.DropUserDataType)) {
                         list.Add(ToSqlDrop() + ToSql(), 0, Enums.ScripActionType.AddUserDataType);
-                    }
-                    else
+                    } else
                         list.Add(Create());
                 }
-                if (HasState(Enums.ObjectStatusType.DropOlderStatus))
-                {
+                if (HasState(Enums.ObjectStatusType.DropOlderStatus)) {
                     list.Add(SQLDropOlder(), 0, Enums.ScripActionType.AddUserDataType);
                 }
                 return list;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 _logger.ErrorException(ex.Message, ex);
                 return null;
             }
         }
 
-        public bool Compare(UserDataType obj)
-        {
+        public bool Compare(UserDataType obj) {
             if (obj == null) throw new ArgumentNullException("obj");
             if (Scale != obj.Scale) return false;
             if (Precision != obj.Precision) return false;

@@ -8,14 +8,12 @@ using Lucene.Net.Index;
 using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
-using Sqloogle.Libs.NLog;
+using NLog;
 using Sqloogle.Utilities;
 using Version = Lucene.Net.Util.Version;
 
-namespace Sqloogle.Search
-{
-    public class SqloogleMiaSearcher : IScriptSearcher
-    {
+namespace Sqloogle.Search {
+    public class SqloogleMiaSearcher : IScriptSearcher {
         private readonly StandardAnalyzer _analyzer;
         private readonly Lucene.Net.Store.Directory _directory;
         private readonly Logger _logger = LogManager.GetLogger("Missing Index Searcher");
@@ -23,8 +21,7 @@ namespace Sqloogle.Search
         private readonly IndexSearcher _searcher;
         private readonly int _resultsLimit;
 
-        public SqloogleMiaSearcher(string indexPath, int resultsLimit = 50)
-        {
+        public SqloogleMiaSearcher(string indexPath, int resultsLimit = 50) {
             _resultsLimit = resultsLimit;
             var fields = new[] {
                 "server",
@@ -58,8 +55,7 @@ namespace Sqloogle.Search
 
         #region IScriptSearcher Members
 
-        public IEnumerable<IDictionary<string,string>> Search(string q)
-        {
+        public IEnumerable<IDictionary<string, string>> Search(string q) {
             var query = _parser.Parse(q);
 
             var topFieldCollector = TopFieldCollector.Create(
@@ -76,16 +72,15 @@ namespace Sqloogle.Search
             var topDocs = topFieldCollector.TopDocs();
 
             if (topDocs == null)
-                return new List<IDictionary<string,string>>();
+                return new List<IDictionary<string, string>>();
 
             var missingIndices = topDocs.ScoreDocs.Select(hit => Docs.DocToDict(_searcher.Doc(hit.Doc), hit.Score)).ToArray();
             _logger.Debug("Search of '{0}' return {1} results.", q, missingIndices.Count());
-            
-            return missingIndices.OrderByDescending(dict=>dict["score"]).ThenByDescending(dict=>dict["rank"]).Take(_resultsLimit);
+
+            return missingIndices.OrderByDescending(dict => dict["score"]).ThenByDescending(dict => dict["rank"]).Take(_resultsLimit);
         }
 
-        public void Close()
-        {
+        public void Close() {
             _analyzer.Close();
             _analyzer.Dispose();
             _searcher.Dispose();
@@ -96,8 +91,7 @@ namespace Sqloogle.Search
 
         #endregion
 
-        public IDictionary<string,string> Find(string id)
-        {
+        public IDictionary<string, string> Find(string id) {
             var keyworldAnalyzer = new KeywordAnalyzer();
             var parser = new QueryParser(Version.LUCENE_30, "id", keyworldAnalyzer);
             var query = parser.Parse(id);
@@ -124,8 +118,7 @@ namespace Sqloogle.Search
 
                     _logger.Debug("Closing");
                     reader.Dispose();
-                }
-                catch (Exception) {
+                } catch (Exception) {
                     _logger.Info("Attempted to read empty search index.");
                 }
             }
