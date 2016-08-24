@@ -7,8 +7,7 @@ using Lucene.Net.Store;
 using Sqloogle.Libs.Rhino.Etl.Core;
 using Version = Lucene.Net.Util.Version;
 
-namespace Sqloogle
-{
+namespace Sqloogle {
     public class LuceneWriter : WithLoggingMixin, IIndexWriter, IDisposable {
         private readonly string _folder;
         private readonly FSDirectory _indexDirectory;
@@ -28,25 +27,29 @@ namespace Sqloogle
         }
 
         public void Add(object doc) {
-            _indexWriter.AddDocument((Document) doc);
+            _indexWriter.AddDocument((Document)doc);
         }
 
         public void Delete(string id) {
-            _indexWriter.DeleteDocuments(new Term("id",id));
+            _indexWriter.DeleteDocuments(new Term("id", id));
         }
 
-        public void Update(string id, object doc)
-        {
+        public void Update(string id, object doc) {
             _indexWriter.UpdateDocument(new Term("id", id), (Document)doc);
         }
 
-        public void Dispose() {
+        public void Commit() {
             Info("Lucene Committing.");
             _indexWriter.Commit();
+        }
 
+        public void Optimize() {
             Info("Lucene Optimizing.");
             _indexWriter.Optimize();
+        }
 
+        public void Dispose() {
+            Info("Lucene Disposal.");
             _indexWriter.Dispose();
             _indexDirectory.Dispose();
             _standardAnalyzer.Close();

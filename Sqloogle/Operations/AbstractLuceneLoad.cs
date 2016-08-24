@@ -8,16 +8,14 @@ using Sqloogle.Libs.Rhino.Etl.Core.Operations;
 namespace Sqloogle.Operations {
 
     public abstract class AbstractLuceneLoad : AbstractOperation {
+        private readonly string _folder;
 
-        private readonly LuceneWriter _luceneWriter;
         private readonly Dictionary<string, int> _counters = new Dictionary<string, int>();
 
         public Dictionary<string, LuceneFieldSettings> Schema { get; set; }
 
-        protected AbstractLuceneLoad(string folder)
-        {
-            _luceneWriter = new LuceneWriter(folder);
-
+        protected AbstractLuceneLoad(string folder) {
+            _folder = folder;
             _counters.Add("None", 0);
             _counters.Add("Create", 0);
             _counters.Add("Update", 0);
@@ -31,31 +29,38 @@ namespace Sqloogle.Operations {
 
             PrepareSchema();
 
-            foreach (var row in rows) {
+            using (var writer = new LuceneWriter(_folder)) {
+                foreach (var row in rows) {
 
-                if (row["action"] == null) {
-                    throw new InvalidOperationException("There is no action column.  A valid action is None, Create, or Update!");
+                    if (row["action"] == null) {
+                        throw new InvalidOperationException("There is no action column.  A valid action is None, Create, or Update!");
+                    }
+
+                    var action = row["action"].ToString();
+                    row.Remove("action");
+
+                    _counters[action] += 1;
+
+                    switch (action) {
+                        case "None":
+                            break;
+                        case "Create":
+                            writer.Add(RowToDoc(row));
+                            break;
+                        case "Delete":
+                            writer.Delete(row["id"].ToString());
+                            break;
+                        case "Update":
+                            writer.Update(row["id"].ToString(), RowToDoc(row));
+                            break;
+                    }
                 }
 
-                var action = row["action"].ToString();
-                row.Remove("action");
-
-                _counters[action] += 1;
-
-                switch (action) {
-                    case "None":
-                        break;
-                    case "Create":
-                        _luceneWriter.Add(RowToDoc(row));
-                        break;
-                    case "Delete":
-                        _luceneWriter.Delete(row["id"].ToString());
-                        break;
-                    case "Update":
-                        _luceneWriter.Update(row["id"].ToString(), RowToDoc(row));
-                        break;
-                }
+                writer.Commit();
+                writer.Optimize();
             }
+
+            Info("Lucene Create: {0}, Update: {1}, and None: {2}.", _counters["Create"], _counters["Update"], _counters["None"]);
             yield break;
         }
 
@@ -69,13 +74,6 @@ namespace Sqloogle.Operations {
                 }
             }
             return doc;
-        }
-
-        public sealed override void Dispose() {
-            Info("Lucene Create: {0}, Update: {1}, and None: {2}.", _counters["Create"], _counters["Update"], _counters["None"]);
-
-            _luceneWriter.Dispose();
-            base.Dispose();
         }
     }
 }

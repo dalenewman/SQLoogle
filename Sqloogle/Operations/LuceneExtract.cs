@@ -11,7 +11,6 @@ namespace Sqloogle.Operations {
     public class LuceneExtract : AbstractOperation {
 
         private readonly FSDirectory _indexDirectory;
-        private IndexReader _reader;
 
         public LuceneExtract(string folder) {
             _indexDirectory = FSDirectory.Open(new DirectoryInfo(folder));
@@ -22,45 +21,48 @@ namespace Sqloogle.Operations {
             if (_indexDirectory == null)
                 yield break;
 
+            IndexReader reader;
+
             try {
-                _reader = IndexReader.Open(_indexDirectory, true);
-            }
-            catch (Exception) {
+                reader = IndexReader.Open(_indexDirectory, true);
+            } catch (Exception) {
                 Warn("Failed to open lucene index in {0}.", _indexDirectory.Directory.FullName);
                 yield break;
             }
 
-            var docCount = _reader.NumDocs();
-            Info("Found {0} documents in lucene index.", docCount);
+            using (reader) {
+                var docCount = reader.NumDocs();
+                Info("Found {0} documents in lucene index.", docCount);
 
-            for (var i = 0; i < docCount; i++) {
+                for (var i = 0; i < docCount; i++) {
 
-                if (_reader.IsDeleted(i))
-                    continue;
+                    if (reader.IsDeleted(i))
+                        continue;
 
-                var doc = _reader.Document(i);
-                var row = new Row();
-                foreach (var field in doc.GetFields().Where(field => field.IsStored)) {
-                    switch (field.Name) {
-                        case "dropped":
-                            row[field.Name] = Convert.ToBoolean(field.StringValue);
-                            break;
-                        default:
-                            row[field.Name] = field.StringValue;
-                            break;
+                    var doc = reader.Document(i);
+                    var row = new Row();
+                    foreach (var field in doc.GetFields().Where(field => field.IsStored)) {
+                        switch (field.Name) {
+                            case "dropped":
+                                row[field.Name] = Convert.ToBoolean(field.StringValue);
+                                break;
+                            default:
+                                row[field.Name] = field.StringValue;
+                                break;
+                        }
+
                     }
+                    yield return row;
 
                 }
-                yield return row;
-
             }
+
+
+
 
         }
 
         public override sealed void Dispose() {
-
-            Debug("Lucene Closing reader.");
-            _reader.Dispose();
 
             Debug("Lucene Closing directory.");
             _indexDirectory.Dispose();
