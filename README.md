@@ -721,5 +721,5 @@ The `Dispose()` method cleans up everything. Rhino ETL is going to call this for
 
 Running the crawler on a schedule keeps your Lucene index up to date. 
 Now you can search all your objects.  SQLoogle includes 
-an *Orchard.Web* ASP.NET MVC 4 project that you can 
+an ASP.NET MVC website project that you can 
 deploy so everyone can search.
