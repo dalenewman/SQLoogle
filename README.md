@@ -1,22 +1,26 @@
 SQLoogle
 ========
 
-### Update 2016
+### Big 2016 Update
 *SQLoogleBot.exe* has a new command line argument; `-s` for schedule.<br/> 
 It accepts a [cron expression](http://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/crontrigger.html) (e.g. `-s "0/20 * 4-23 ? * MON-SAT *"`). <br/>
 Use [nssm](https://nssm.cc/) to make it a service and just let it run.
 
-### Credits
+### Frontend Credits
 
-* [Mergely](http://www.mergely.com/)
-* [CodeMirror](https://codemirror.net/)
-* [ColorBox](http://www.jacklmoore.com/colorbox/)
-* [Lucene.Net](https://lucenenet.apache.org/)
-* [Microsoft](https://www.microsoft.com)
+* [jQuery](https://jquery.com)
+* [Knockoutjs](http://knockoutjs.com)
+* [Mergely](http://www.mergely.com)
+* [CodeMirror](https://codemirror.net)
+* [ColorBox](http://www.jacklmoore.com/colorbox)
+
+### Backend Credits
+
 * [RhinoETL](https://github.com/hibernating-rhinos/rhino-etl)
-* [OpenDbDiff](http://opendbdiff.codeplex.com/)
-* [Quartz.Net](http://www.quartz-scheduler.net/)
-* [CommandLine Parser](https://commandline.codeplex.com/)
+* [OpenDbDiff](http://opendbdiff.codeplex.com)
+* [Quartz.Net](http://www.quartz-scheduler.net)
+* [CommandLine Parser](https://commandline.codeplex.com)
+* [Microsoft](https://www.microsoft.com)
 
 Note: What follows is an article I posted 
 to [CodeProject](http://www.codeproject.com/) back 
