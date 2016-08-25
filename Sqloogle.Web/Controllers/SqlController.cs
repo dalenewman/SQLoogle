@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.SessionState;
 using Sqloogle.Search;
 using Sqloogle.Web.Models;
 
 namespace Sqloogle.Web.Controllers {
+
+    [SessionState(SessionStateBehavior.Disabled)]
     public class SqlController : Controller {
 
         private const string ContentPlain = "text/plain";
@@ -43,7 +46,7 @@ namespace Sqloogle.Web.Controllers {
                     searchResponse.success = false;
                     searchResponse.message = e.Message;
                 }
-                  
+
             }
 
             return
@@ -58,8 +61,7 @@ namespace Sqloogle.Web.Controllers {
 
             var result = !string.IsNullOrEmpty(id) ? new SqloogleSearcher(ConfigurationManager.AppSettings.Get("SearchIndexPath")).Find(id) : null;
 
-            if (result != null)
-            {
+            if (result != null) {
                 var searchResponse = new SearchResponse();
                 searchResponse.searchresults.Add(new Models.ScriptedObjects.SearchResult(result, this));
 

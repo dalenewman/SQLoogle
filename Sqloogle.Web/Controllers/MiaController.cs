@@ -3,11 +3,14 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.SessionState;
 using Sqloogle.Search;
 using Sqloogle.Web.Models.MissingIndices;
 using SearchResponse = Sqloogle.Web.Models.SearchResponse;
 
 namespace Sqloogle.Web.Controllers {
+
+    [SessionState(SessionStateBehavior.Disabled)]
     public class MiaController : Controller {
         private readonly SqloogleMiaSearcher _searcher;
 
