@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
-using Sqloogle.Libs.Rhino.Etl.Core;
-using Sqloogle.Libs.Rhino.Etl.Core.Operations;
+using Rhino.Etl.Core;
+using Rhino.Etl.Core.Operations;
 
 namespace Sqloogle.Operations {
     public class LuceneExtract : AbstractOperation {

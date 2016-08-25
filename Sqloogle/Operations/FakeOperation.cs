@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Sqloogle.Libs.Rhino.Etl.Core;
-using Sqloogle.Libs.Rhino.Etl.Core.Operations;
+using Rhino.Etl.Core;
+using Rhino.Etl.Core.Operations;
 
 namespace Tests {
 

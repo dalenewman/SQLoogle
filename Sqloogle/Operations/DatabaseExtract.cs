@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using Sqloogle.Libs.Rhino.Etl.Core;
+using Rhino.Etl.Core;
 using Sqloogle.Operations.Support;
 
 namespace Sqloogle.Operations {

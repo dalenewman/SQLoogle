@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using Sqloogle.Libs.Rhino.Etl.Core;
+using Rhino.Etl.Core;
 
 namespace Sqloogle {
     public class SqlConnectionChecker : WithLoggingMixin {

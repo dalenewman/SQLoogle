@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Sqloogle.Libs.Rhino.Etl.Core;
-using Sqloogle.Libs.Rhino.Etl.Core.Operations;
+using Rhino.Etl.Core;
+using Rhino.Etl.Core.Operations;
 using Sqloogle.Utilities;
 
 namespace Sqloogle.Operations {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
-using Sqloogle.Libs.Rhino.Etl.Core;
+using Rhino.Etl.Core;
 using Sqloogle.Operations;
 using Sqloogle.Operations.Support;
 

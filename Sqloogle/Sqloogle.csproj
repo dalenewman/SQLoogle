@@ -75,9 +75,45 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Boo.Lang, Version=2.0.9.4, Culture=neutral, PublicKeyToken=32c39770e9a21a67, processorArchitecture=MSIL">
+      <HintPath>..\packages\Boo.0.9.4\lib\Boo.Lang.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Boo.Lang.Compiler, Version=2.0.9.4, Culture=neutral, PublicKeyToken=32c39770e9a21a67, processorArchitecture=MSIL">
+      <HintPath>..\packages\Boo-Compiler.0.9.4\lib\Boo.Lang.Compiler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Boo.Lang.Parser, Version=2.0.9.4, Culture=neutral, PublicKeyToken=32c39770e9a21a67, processorArchitecture=MSIL">
+      <HintPath>..\packages\Boo-Compiler.0.9.4\lib\Boo.Lang.Parser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.0.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.0.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FileHelpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <HintPath>..\packages\FileHelpers.2.0.0.0\lib\FileHelpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FileHelpers.ExcelStorage, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FileHelpers.2.0.0.0\lib\FileHelpers.ExcelStorage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Interop.Excel, Version=1.3.0.0, Culture=neutral">
+      <HintPath>..\packages\FileHelpers.2.0.0.0\lib\Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.Office, Version=2.1.0.0, Culture=neutral">
+      <HintPath>..\packages\FileHelpers.2.0.0.0\lib\Interop.Office.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
       <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
@@ -85,6 +121,18 @@
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.3.7\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rhino.DSL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoDSL.1.0.0\lib\Rhino.DSL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rhino.Etl.Core, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rhino-Etl.1.3.1.0\lib\net35\Rhino.Etl.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rhino.Etl.Dsl, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rhino-Etl.1.3.1.0\lib\net35\Rhino.Etl.Dsl.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -240,54 +288,6 @@
     <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOptionIgnore.cs" />
     <Compile Include="Libs\DBDiff.Schema\SqlServer2005\Options\SqlOptionScript.cs" />
     <Compile Include="Libs\DBDiff.Schema\StatusEnum.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\ConventionOperations\ConventionInputCommandOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\ConventionOperations\ConventionOutputCommandOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\ConventionOperations\ConventionSqlBatchOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\ConventionOperations\ConventionSqlBulkInsertOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\DataReaders\Descriptor.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\DataReaders\DictionaryDescriptorAdapter.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\DataReaders\DictionaryEnumeratorDataReader.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\DataReaders\EnumerableDataReader.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\CachingEnumerable.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\EventRaisingEnumerator.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\GatedThreadSafeEnumerator.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\SingleRowEventRaisingEnumerator.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Enumerables\ThreadSafeEnumerator.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\EtlProcess.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\EtlProcessBase.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Exceptions\MissingKeyException.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Exceptions\ParameterCountException.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Exceptions\RhinoEtlException.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Guard.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Infrastructure\SqlCommandSet.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Infrastructure\Use.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\IPipelineExecuter.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\ObjectArrayKeys.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractAggregationOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractBranchingOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractCommandOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractDatabaseOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\AbstractOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\BranchingOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\InputCommandOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\IOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\JoinOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\JoinType.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\MultiThreadedBranchingOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\NestedLoopsJoinOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\OperationStatistics.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\OutputCommandOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\PartialProcessOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\SqlBatchOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Operations\SqlBulkInsertOperation.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\AbstractPipelineExecuter.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\PipelineExecutionException.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\SingleThreadedNonCachedPipelineExecuter.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\SingleThreadedPipelineExecuter.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Pipelines\ThreadPoolPipelineExecuter.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\QuackingDictionary.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\Row.cs" />
-    <Compile Include="Libs\Rhino.Etl\Core\WithLoggingMixin.cs" />
     <Compile Include="LuceneFieldSettings.cs" />
     <Compile Include="LuceneWriter.cs" />
     <Compile Include="Operations\CachedObjectStatsJoin.cs" />
@@ -353,7 +353,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libs\DBDiff.Schema\LICENSE.txt" />
-    <Content Include="Libs\Rhino.Etl\license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

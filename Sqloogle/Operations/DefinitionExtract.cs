@@ -4,8 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Generates;
 using Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model;
-using Sqloogle.Libs.Rhino.Etl.Core;
-using Sqloogle.Libs.Rhino.Etl.Core.Operations;
+using Rhino.Etl.Core;
+using Rhino.Etl.Core.Operations;
 
 namespace Sqloogle.Operations {
 

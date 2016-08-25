@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-using Sqloogle.Libs.Rhino.Etl.Core.Operations;
+using Rhino.Etl.Core.Operations;
 using Sqloogle.Operations;
 
 namespace Sqloogle.Processes {

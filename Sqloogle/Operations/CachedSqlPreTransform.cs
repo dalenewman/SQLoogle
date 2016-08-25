@@ -4,8 +4,8 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Sqloogle.Libs.Rhino.Etl.Core;
-using Sqloogle.Libs.Rhino.Etl.Core.Operations;
+using Rhino.Etl.Core;
+using Rhino.Etl.Core.Operations;
 using Sqloogle.Utilities;
 
 namespace Sqloogle.Operations {

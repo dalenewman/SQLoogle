@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using Sqloogle.Libs.Rhino.Etl.Core;
+using Rhino.Etl.Core;
 using Sqloogle.Operations.Support;
 
 namespace Sqloogle.Operations {

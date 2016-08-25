@@ -288,7 +288,7 @@ namespace Sqloogle.Libs.DBDiff.Schema.SqlServer2005.Model {
                 }
                 return list;
             } catch (Exception ex) {
-                _logger.ErrorException(ex.Message, ex);
+                _logger.Error(ex, ex.Message);
                 return null;
             }
         }

@@ -4,7 +4,7 @@ using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
-using Sqloogle.Libs.Rhino.Etl.Core;
+using Rhino.Etl.Core;
 using Version = Lucene.Net.Util.Version;
 
 namespace Sqloogle {
