@@ -10,8 +10,6 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    @if (HttpContext.Current.IsDebuggingEnabled) {
-
         <link href="@Url.Content("~/Content/colorbox.css")?v=@ViewBag.Version" rel="stylesheet" type="text/css" />
         <link href="@Url.Content("~/Content/prettify.css")?v=@ViewBag.Version" rel="stylesheet" type="text/css" />
         <link href="@Url.Content("~/Scripts/mergely-3.3.3/lib/codemirror.css")" rel="stylesheet" type="text/css" />
@@ -26,10 +24,6 @@
         <script src="@Url.Content("~/Scripts/codemirror-sql.js")" type="text/javascript"> </script>
         <script src="@Url.Content("~/Scripts/mergely-3.3.3/lib/mergely.js")" type="text/javascript"> </script>
         <script src="@Url.Content("~/Scripts/sqloogle.js")?v=@ViewBag.Version" type="text/javascript"></script>
-    } else {
-        <link href="@Url.Content("~/Content/combined.min.css")?v=@ViewBag.Version" rel="stylesheet" type="text/css" />
-        <script src="@Url.Content("~/Scripts/combined.min.js")?v=@ViewBag.Version" type="text/javascript"> </script>
-    }
     <script type="text/javascript">
         //<!--
             window.settings = {

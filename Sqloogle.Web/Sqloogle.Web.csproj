@@ -136,12 +136,21 @@
   <ItemGroup>
     <Content Include="Content\colorbox.css" />
     <Content Include="Content\combined.min.css" />
+    <Content Include="Content\images\border1.png" />
+    <Content Include="Content\images\border2.png" />
+    <Content Include="Content\images\icons.jpg" />
+    <Content Include="Content\images\icons.png" />
+    <Content Include="Content\images\icons_hover.png" />
+    <Content Include="Content\images\icons_selected.png" />
+    <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\SmallSQLoogleLogo.png" />
+    <Content Include="Content\images\SQLoogleLogo.png" />
     <Content Include="Content\prettify.css" />
     <Content Include="Content\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\codemirror-sql.js" />
-    <Content Include="Scripts\combined.min.js" />
     <Content Include="Scripts\date.format.js" />
     <Content Include="Scripts\google-code-prettify\lang-apollo.js" />
     <Content Include="Scripts\google-code-prettify\lang-clj.js" />
@@ -223,7 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -233,6 +241,9 @@
       <Project>{344419b4-518d-47dd-945a-d47bbfc03aad}</Project>
       <Name>Sqloogle</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\local.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
