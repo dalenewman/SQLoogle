@@ -33,15 +33,6 @@ namespace Sqloogle
             }
         }
 
-        [ConfigurationProperty("filePath", DefaultValue = "", IsRequired = false)]
-        public string FilePath
-        {
-            get
-            {
-                return this["filePath"] as string;
-            }
-        }
-
         [ConfigurationProperty("servers")]
         public ServerElementCollection Servers
         {
